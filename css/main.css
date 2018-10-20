@@ -1,0 +1,1287 @@
+/*----------------------------------------Reset CSS*/
+*{
+	font-family: Muli;
+	margin: 0px;
+	padding: 0px;
+}
+
+body{
+	margin: 0 auto;
+}
+
+h1,h2,h3,h4 {
+	font-family: Roboto;
+	font-weight: 700;
+}
+
+.container{
+	max-width: 960px;
+	margin: 0 auto;
+}
+
+/*----------------------------------------Logotype*/
+header{
+	overflow: visible;
+	position: relative;
+}
+
+figure>img{
+	width: 100%;
+}
+
+figure{
+	position: relative;
+}
+
+figcaption{
+	position: absolute;
+	bottom: 140px;
+	right: 34px;
+}
+
+figcaption>p{
+	display: none;
+}
+
+figcaption h1{
+	color: #fff;
+	font-size: 140px;
+}
+
+.btn-outline-secondary:hover {
+    color: #fff;
+    background-color: #af0000;
+    border-color: #fff;
+}
+
+.box{
+	width: 100%;
+	position: absolute;
+	top: 20px;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+/*----------------------------------------Navigation*/
+#logo img{
+	width: 80px;
+	float: left;
+	padding-top:3px;
+}
+
+.white{
+	overflow: hidden;
+	padding: 12px 22px 12px 30px;
+	background: rgba(0, 0, 0, 0.8);
+}
+
+#showmenu{
+	float: right;
+	padding-top: 4px;
+}
+
+#showtime.open{
+	display: block;
+}
+
+nav{
+	clear: both;
+	display: none;
+	position: relative;
+}
+
+nav>ul{
+	list-style: none;
+	background-color: #eee;
+	overflow: hidden;
+	border: 1px solid #ddd;
+	border-radius: 2px;
+	margin: 0 20px;
+}
+
+nav>ul>li{
+	overflow: hidden;
+}
+
+nav>ul>li+li{
+    border-bottom: 1px dashed #ddd;
+}
+
+nav>ul>li a{
+	float: left;
+	width: 100%;
+	font-family: Roboto;
+	font-size: 16px;
+	font-weight: 400;
+	color: #fff;
+	text-decoration: none;
+	padding: 14px 22px;
+	box-sizing: border-box;
+}
+
+nav>ul>li a:hover{
+	background: #af0000;
+	color: #fff;
+	text-decoration: none;
+}
+
+nav>ul>li a:active{
+	background: #af0000;
+	color: #fff;
+}
+
+nav>ul>li img{
+	width: 22px;
+	padding: 0;
+}
+
+#showtime:before {
+	content:'';
+	position: absolute;
+	width:0;
+	height:0;
+	display: block;
+	border: solid transparent;
+	border-bottom-color: #ccc;
+	border-width: 8px;
+	position: absolute;
+	top:-16px;
+	right: 26px;
+	margin-left: -8px;
+}
+
+#showtime:after {
+	content:'';
+	position: absolute;
+	width:0;
+	height:0;
+	display: block;
+	border: solid transparent;
+	border-bottom-color: #eee;
+	border-width: 8px;
+	position: absolute;
+	top:-14.5px;
+	right: 26px;
+	margin-left: -8px;
+}
+
+.card-title {
+	font-weight: bold;
+}
+
+.card-text {
+	color: #666;
+}
+
+/*----------------------------------------Fall of Giants*/
+.cover{
+	text-align: center;
+}
+
+.detail>h2>a, .introduction>h2>a{
+	color: #000;
+	font-family: Roboto;
+	font-weight: 700;
+	font-size: 26px;
+	text-decoration: none;
+	display: inline-block;
+	margin-top: 22px;
+
+	transition: color 1s linear 0s;
+}
+
+.detail>h2>a:hover{
+	color: #af0000;
+}
+
+.detail>p>a{
+	color: #444;
+	font-size: 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.info, .list{
+	color: #777;
+	margin: 12px 0;
+	line-height: 23px;
+}
+
+.detail>a button{
+	width: 100%;
+	font-family: Roboto;
+	font-size: 18px;
+	font-weight: 500;
+	color: #fff;
+	background: #af0000;
+	border: 0;
+	border-radius: 4px;
+	padding: 10px;
+	margin-top: 20px;
+	cursor: pointer;
+
+	transition: background 1s linear 0.1s;
+}
+
+.detail>a button:hover{
+	background: #cf0606;
+}
+
+.abstract{
+	display: none;
+}
+
+.abstract a{
+	text-decoration: none;
+	color: #333;
+}
+
+/*----------------------------------------Request list*/
+.requestlist{
+	margin-top: 64px;
+}
+
+.requestlist>h3{
+	font-size:20px;
+	margin-bottom: 14px;
+}
+
+.requestlist> ul{
+	list-style: none;
+	overflow: hidden;
+	margin: -10px;
+}
+
+.requestlist ul li{
+	float: left;
+	width: 16%;
+  padding: 3px;
+  margin: 3px;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+.requestlist ul li a img{
+	width: 100%;
+}
+
+.requestlist ul li p{
+	text-align: center;
+	height: 46px;
+	overflow: hidden;
+	margin-bottom: 0;
+}
+
+.requestlist ul li p a{
+	color: #555;
+	text-decoration: none;
+
+	transition: color 1s linear 0.2s;
+    -webkit-transition: color 1s linear 0s;
+    -moz-transition: color 1s linear 0s;
+}
+
+.requestlist ul li p a:hover{
+	color: #af0000;
+}
+
+.requestlist ul li a img:hover{
+	opacity: 0.9;
+}
+
+.reserve {
+	width: 100%;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  background: #af0000;
+  border: 0;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+
+/*----------------------------------------What's New list*/
+.newlist{
+	margin-top: 54px;
+}
+
+.newlist>h3{
+	font-size:20px;
+	margin-bottom: 22px;
+}
+
+.newlist ul{
+	list-style: none;
+	overflow: hidden;
+}
+
+.newlist ul li{
+	float: left;
+	border: 5px solid #333;
+	padding: 32px;
+}
+
+.newlist ul li+li{
+	margin-top: 22px;
+}
+
+.newlist ul li h4{
+	margin-bottom: 6px;
+	font-size: 24px;
+	font-weight: 700;
+	width: 100%;
+	display: inline-block;
+}
+
+.newlist ul li>span{
+	color: #af0000;
+	font-family: 'PT Serif';
+}
+
+.newlist ul li p{
+	margin-top: 16px;
+	font-size: 16px;
+}
+
+.newlist ul li>a button{
+	width: 100%;
+	font-family: Roboto;
+	font-size: 18px;
+	font-weight: 500;
+	color: #fff;
+	background: #af0000;
+	border: 0;
+	border-radius: 4px;
+	padding: 10px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+.newlist ul li>a button:hover{
+	opacity: 0.9;
+}
+
+/*----------------------------------------Introduction of the website*/
+.intro {
+	margin-top: 64px;
+}
+
+.intro>h3{
+	font-size:20px;
+	color: #af0000;
+	margin-bottom: 22px;
+}
+
+.join {
+	margin-top: 64px;
+}
+
+.intro>p{
+	color: #555;
+	font-size: 16px;
+	margin: 22px 0;
+}
+
+.features{
+	color: #333;
+	font-size: 17px;
+	font-weight: 600;
+	margin-left: 20px;
+	margin-right: 12px;
+	margin-bottom: 40px;
+}
+
+.features li+li{
+	margin-top: 12px;
+}
+
+.features a{
+	color: #af0000;
+	text-decoration: none;
+}
+
+.features a:hover{
+	text-decoration: underline;
+}
+
+.data{
+	overflow: hidden;
+	background-color: #eee;
+	list-style: none;
+	margin-top: 44px;
+	padding: 44px 44px 66px 44px;
+	text-align: center;
+	border-bottom: 4px solid #af0000;
+}
+
+.data li+li{
+	float: left;
+	margin-top: 66px;
+}
+
+.data li h4 {
+	color: #af0000;
+	font-size: 18px;
+	margin: 22px 0 14px 0;
+}
+
+.footer {
+	color: #eee;
+	font-size: 14px;
+	background: #333;
+	margin-top: 50px;
+	padding: 8px 22px;
+}
+
+
+@media ( min-width: 640px ){
+	.adjustment {
+		margin:46px 0;
+		overflow: hidden;
+	}
+
+	.adjustment2 {
+		margin:70px 0;
+		padding: 0 8px;
+	}
+
+	.carousel {
+    margin-bottom: 40px;
+}
+
+	.white{
+		position: relative;
+	}
+
+	#showtime {
+		display: block;
+		float: right;
+		position: absolute;
+		top: 0px;
+		right: 0;
+	}
+
+	#showmenu, #showtime:before,
+	#showtime:after {
+		display: none;
+	}
+
+	#showtime ul {
+		background: none;
+		border: none;
+	}
+
+	#showtime ul li {
+		float: left;
+	}
+
+	.active {
+		color:#eb0000;
+	}
+
+	nav>ul>li+li{
+		border-bottom: 0;
+	}
+
+	nav>ul>li a{
+		padding: 12px 16px;
+		font-size: 18px;
+	}
+
+	.btn-outline-secondary {
+    color: #fff;
+    background-color: #222;
+    background-image: none;
+		border-color: #fff;
+}
+
+	figcaption>p{
+		display: block;
+		font-size: 16px;
+	}
+
+	.feature{
+		overflow: hidden;
+		position: relative;
+	}
+
+	.cover{
+		float: left;
+		width: 30%;
+	}
+
+	.cover img{
+		width: 100%;
+	}
+
+	.detail{
+		float: left;
+		width: 70%;
+		padding-left: 30px;
+		box-sizing: border-box;
+	}
+
+	.detail>p>a{
+		overflow: hidden;
+	}
+
+	.detail>h2>a, .introduction>h2>a{
+		margin-top: 0;
+	}
+
+	.detail>a button{
+		width: 30%;
+		position: absolute;
+		bottom: 3px;
+	}
+
+	.requestlist> ul{
+		margin: -13px;
+	}
+
+	.newlist ul li{
+		width: 48%;
+		box-sizing: border-box;
+	}
+
+	.newlist ul li:nth-child(2){
+		margin-top: 0;
+	}
+
+	.newlist ul li:nth-child(2n){
+		margin-left: 20px;
+	}
+
+	.data{
+	padding: 44px 24px 66px 24px;
+}
+
+	.data li{
+		float: left;
+		width: 50%;
+		padding: 0 24px;
+		box-sizing: border-box;
+	}
+
+	.data li:nth-child(2){
+		margin-top: 0;
+	}
+
+	.footer p {
+		margin-bottom: 0;
+	}
+}
+
+@media ( min-width: 960px ){
+	.box{
+		top: 44px;
+	}
+
+	#logo img{
+		width: 90px;
+	}
+
+	nav>ul>li a{
+		padding: 18px 16px;
+	}
+
+	figcaption>h1{
+		font-size: 40px;
+		margin-bottom: 0;
+	}
+
+	figcaption>p{
+		color: #eee;
+		font-size: 16px;
+		margin-bottom: 10px;
+		margin-top: -6px;
+	}
+
+	.detail>h2 a{
+		font-size: 36px;
+	}
+
+	.info{
+		margin: 12px 0;
+	}
+
+	.abstract{
+		display: block;
+	}
+
+	.book{
+		position: relative;
+	}
+
+	.abstract a{
+		position: absolute;
+		width: 65%;
+		bottom: 88px;
+		left: 320px;
+	}
+
+	.detail{
+		padding-left: 44px;
+		box-sizing: border-box;
+	}
+
+	.detail>a button{
+		padding: 14px;
+		width: 25%;
+	}
+
+	.requestlist> ul{
+		margin: -8px;
+	}
+
+	.requestlist>h3{
+		font-size: 32px;
+		color: #af0000;
+	}
+
+	.requestlist ul li p{
+		padding-top:4px;
+		height: 82px;
+		margin-bottom: 0;
+	}
+
+	.newlist ul li{
+		width: 31.8%;
+		height: 370px;
+		box-sizing: border-box;
+	}
+
+	.newlist>h3{
+		font-size: 32px;
+		color: #af0000;
+	}
+
+	.newlist ul li:nth-child(3){
+		margin-top: 0;
+		margin-left: 20px;
+	}
+
+	.newlist ul li:nth-child(4){
+		margin-left: 0;
+		margin-right: 20px;
+	}
+
+	.intro>h3{
+		font-size: 32px;
+	}
+
+	.data{
+		padding: 30px 20px;
+	}
+
+	.data li{
+		width: 33.333%;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+
+	.data li+li{
+		margin: 0;
+	}
+
+	.data p {
+		margin-bottom: 0;
+	}
+}
+
+
+/*----------------------------------------movie_box Page*/
+.key_words {
+		display: inline-block;
+		margin: -10px 10px 0 8px;
+		font-size: 18px;
+}
+
+.my-1 {
+    margin-bottom: 0.75rem!important;
+}
+
+.btn-primary {
+		width:100px;
+    background-color: #af0000;
+    border-color: #af0000;
+}
+
+.btn-primary:hover {
+	opacity: 0.9;
+	background-color: #af0000;
+	border-color: #af0000;
+}
+
+.col {
+	width: 30%;
+}
+
+.table td, .table th {
+	vertical-align: middle;
+}
+
+.btnreserve, .btnremove {
+		color: #dc3545;
+    background-color: transparent;
+    background-image: none;
+    border-color: #dc3545;
+		font-size: 14px;
+    padding: 2px 8px;
+		vertical-align: baseline;
+		border: 1px solid #dc3545;
+	  border-radius: .25rem;
+		cursor: pointer;
+}
+
+.invisible {
+	color: #aaa;
+	border: 1px solid #aaa;
+	border-radius: 4px;
+	background: transparent;
+	cursor: default;
+}
+
+/*===================disable the button ===================*/
+.btn_borrowed {
+		font-size: 14px;
+		color: #aaa;
+		border: 1px solid #aaa;
+		border-radius: 4px;
+		padding: 2px 8px;
+		background: transparent;
+		cursor: default;
+}
+
+.barcode {
+	padding-bottom: 30px;
+}
+
+.form-row {
+		margin-top: 30px;
+}
+
+.form-control {
+	width: 380px;
+	display: inline-block;
+}
+
+.label {
+	width: 80px;
+	display: block;
+}
+
+.shorter {
+	width: 200px;
+}
+
+.space{
+	padding: 44px 0 22px 0;
+}
+
+.gray{
+	background: #f5f5f5;
+}
+
+.hold{
+	width: 100%;
+	height: 180px;
+	color: #666;
+	font-size: 16px;
+	border: 1px solid #aaa;
+	border-radius: 2px;
+	padding: 8px;
+	box-sizing: border-box;
+}
+
+.post img{
+	float: left;
+	margin-top: 10px;
+	margin-bottom: 18px;
+}
+
+.post p{
+	color: #777;
+	font-size: 14px;
+	float: left;
+	margin-top: 12px;
+	margin-left: 10px;
+}
+
+.btn_post{
+	width: 100%;
+	display: block;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 600;
+	padding: 8px;
+	background: #af0000;
+	border: 1px solid #af0000;
+	border-radius: 4px;
+	cursor: pointer;
+
+	transition: background 1s linear 0.1s;
+}
+
+.btn_post:hover{
+	background: #cf0606;
+}
+
+
+
+/*--------------------------------------------------------Shared CSS*/
+.request_rank, .category{
+	margin-top: 80px;
+}
+
+.request_rank h3, .category>h3{
+	font-size: 32px;
+	margin-top: 66px;
+	padding-bottom: 16px;
+	border-bottom: 1px solid #aaa;
+}
+
+.request_rank ol, .category>ul{
+	margin-top: 14px;
+	list-style: none;
+}
+/*-------------------------------------------------------------------Above: request and share pages*/
+
+
+.request_rank ol li{
+	counter-increment: count;
+	margin-left: 40px;
+}
+
+.request_rank ol>li:before{
+	content: counter(count)'.';
+	color: #333;
+	float: left;
+	font-size: 30px;
+	margin-left: -40px;
+}
+
+.request_rank ol>li a{
+	text-decoration: none;
+	color: #333;
+	font-size: 18px;
+	font-weight: 600;
+
+	transition: color 1s linear 0.1s;
+}
+
+.request_rank ol>li a:hover{
+	color: #af0000;
+}
+
+.request_rank ol li+li{
+	margin-top: 30px;
+}
+
+.request_rank ol li span{
+	color: #777;
+	font-size: 15px;
+	font-weight: 100;
+	display: block;
+	margin-top: 8px;
+}
+
+.books_rank {
+	margin-top: 66px;
+}
+
+.books_rank ul, .sharebooks ul{
+	list-style: none;
+	border-top: 1px dashed #ccc;
+	padding-top: 30px;
+}
+
+.books_rank ul li, .sharebooks ul li{
+	border-bottom: 1px dashed #aaa;
+	padding-bottom: 44px;
+}
+
+.books_rank ul li+li, .sharebooks ul li{
+	margin-top: 44px;
+}
+
+.books_rank ul li a, .sharebooks ul li a{
+	text-align: center;
+	display: block;
+}
+
+.books_rank ul li h4 a, .sharebooks ul li h4 a{
+	color: #333;
+	font-size: 20px;
+	font-weight: 900;
+	text-align: left;
+	text-decoration: none;
+	margin: 18px 0 12px 0;
+
+	transition: color 1s linear 0.1s;
+}
+
+.books_rank ul li h4 a:hover, .sharebooks ul li h4 a:hover{
+	color: #af0000;
+}
+
+.books_rank ul li p{
+	color: #666;
+	font-size: 15px;
+	margin-bottom: 14px;
+
+}
+
+.books_rank ul li span, .sharebooks ul li span{
+	color: #af0000;
+	font-family: 'PT Serif';
+	font-size: 15px;
+}
+
+.more>button{
+	width: 100%;
+	font-size: 18px;
+	color: #fff;
+	background: #999;
+	border: 0;
+	border-radius: 4px;
+	padding: 10px;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+.more button:hover{
+	background: #777;
+}
+
+
+@media ( min-width: 640px ){
+	.btn_post{
+		width: 30%;
+		float: right;
+		margin-top: 12px;
+	}
+
+	.post{
+		overflow: hidden;
+	}
+
+	.books_rank ul li{
+		overflow: hidden;
+		position: relative;
+	}
+
+	.books_rank ul li a{
+		float: left;
+		display: block;
+	}
+
+	.books_rank ul li a img:hover{
+		opacity: 0.9;
+	}
+
+	.details02{
+		float: left;
+		margin-left: 22px;
+	}
+
+	.books_rank ul li h4 a{
+		margin-top: 0;
+		margin-bottom: 20px;
+	}
+
+	.books_rank ul li p{
+		font-size: 16px;
+	}
+
+	.books_rank ul li span{
+		font-size: 16px;
+		position: absolute;
+		bottom: 48px;
+	}
+}
+
+
+@media (min-width: 960px){
+	.hold{
+		margin-top: 44px;
+	}
+
+	.btn_post{
+		width: 25%;
+		padding: 12px;
+	}
+
+	aside{
+		float: right;
+		width: 30%;
+	}
+
+	.books_rank{
+		margin-top: 106px;
+	}
+
+	.details02{
+		margin-left: 30px;
+	}
+
+	.books_rank ul li h4 a{
+		font-size: 22px;
+	}
+}
+
+/*----------------------------------------Share Page*/
+.introduction{
+	float: left;
+	width: 100%;
+	margin-bottom: 66px;
+}
+
+.gatsby a{
+	display: block;
+	text-decoration: none;
+    color: #333;
+	padding-top: 8px;
+}
+
+.g2{
+	margin-top: 22px;
+}
+
+.numberarea{
+	margin-top: 21px;
+}
+
+.number1, .number2{
+	color: #af0000;
+	font-size: 24px;
+	font-weight: 700;
+}
+
+.number2{
+	color: #666;
+	margin-top: 18px;
+}
+
+.n1span{
+	color: #af0000;
+}
+
+.n2span{
+	color: #888;
+}
+
+.category>ul{
+	overflow: hidden;
+	border-top: 1px dashed #ddd;
+	padding-top: 16px;
+}
+
+.category>ul>li{
+	float: left;
+	margin: 12px 6px;
+}
+
+.category>ul>li a{
+	color: #333;
+	border: 1px solid #aaa;
+	border-radius: 25px;
+	text-decoration: none;
+	padding: 6px 18px;
+}
+
+/*============================================================= once a button pressed, the following contents will be refreshed*/
+.category>ul>li a:focus-within {
+	color: #fff;
+	background: #af0000;
+	border: 1px solid #af0000;
+}
+
+/*============================================================= */
+
+.name, .sharebooks ul li h4 a, .sharebooks ul li span{
+	text-align: center;
+}
+
+.sharebooks ul:nth-child(n+2){
+	border: 0;
+	padding-top: 0;
+}
+
+@media (min-width: 640px){
+	.introduction{
+		width: 70%;
+		padding-left: 33px;
+		box-sizing: border-box;
+		margin-bottom: 0;
+	}
+
+	.numberarea{
+		overflow: hidden;
+	}
+
+	.g1, .g2{
+		width: 50%;
+		float: left;
+		margin-top: 0;
+	}
+
+	.number2{
+		margin-top: 0;
+	}
+
+	.abstract p>a{
+		height: 50pt;
+	}
+
+	.sharebooks ul{
+		overflow: hidden;
+	}
+
+	.sharebooks ul li{
+		float: left;
+		width: 33.333%;
+	}
+
+	.name{
+		height: 100px;
+		overflow: hidden;
+	}
+
+	.sharebooks ul li h4 a{
+		font-size: 18px;
+		margin-bottom: 8px;
+		padding: 0 12px;
+	}
+}
+
+@media(min-width: 960px){
+	.feature{
+		margin-top: 44px;
+	}
+
+	.abstract p>a{
+		height: 80px;
+	}
+
+	.g1, .g2{
+		width: 35%;
+	}
+
+	.number1, .number2{
+		font-size: 28px;
+	}
+
+	.sharebooks{
+		margin-top: 40px;
+	}
+
+	small {
+		width: 930px;
+		color: #d1763e;
+		display: inline-block;
+		background: #ffffe5;
+		padding: 6px 14px;
+		margin-bottom: 2px;
+		border: 1px solid #fff1c4;
+		border-radius: 4px;
+	}
+
+	.booklist{
+		margin-top: 16px;
+	}
+
+	.name{
+		height: 120px;
+	}
+}
+
+
+/*=======================contact page*/
+.contactpig {
+	background-size:100%;
+	height: 544px;
+	background:url(../images/contactpic.jpg) no-repeat;
+}
+
+.contact_container {
+	overflow: hidden;
+	margin-top: 70px;
+}
+
+.social_media {
+	color: #fff;
+	float: left;
+	width: 270px;
+	height: 395px;
+	margin-left: 250px;
+	background:rgba(230, 230, 230, 0.2);
+	padding: 26px;
+}
+
+.social_media h3 {
+	font-size: 32px;
+	border-bottom: 1px solid #fff;
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+}
+
+.mail a {
+	color: #ffffcc;
+	font-weight: bold;
+}
+
+.icons_group {
+	margin-top: 30px;
+	padding-top: 20px;
+	border-top: 1px solid #fff;
+}
+
+.contact_form {
+  color: #fff;
+  background: #af0000;
+  padding: 30px 50px;
+  float: right;
+}
+
+.form_contact {
+	display: block;
+	margin: 0;
+}
+
+.form-control2 {
+	width: 300px;
+	font-size: 14px;
+	display: block;
+}
+
+.btn-primary2 {
+	width: 90px;
+	color: #fff;
+	background-color: #af0000;
+	border-color: #fff;
+	margin-left: 210px;
+}
+
+.btn-primary2:hover {
+	color: #af0000;
+	background-color: #fff;
+}
+
+/*============================ admin page*/
+.form_gallery {
+	margin-top: 30px;
+}
+
+/*============================ Gallery*/
+.card-columns {
+	margin-top: 20px;
+}
+
+.card {
+	width: 295px;
+	height: 437px;
+}
