@@ -1,18 +1,23 @@
-<!--not allow users to visit admin page just by typing address
 <?php
   if(!isset($_SESSION)) {
     session_start();
   }
-  
+
   if(isset($_SESSION['type'])) {
-    if($_SESSION['type'] != 'admin') {  #check uer type before logging
+    if($_SESSION['type'] != 'moderator') {
       header("Location: index.php");
       exit();
     }    
   } else {
     header("Location: index.php");
     exit();
-  }  
+  }
+?>
+
+<?php
+  if(!isset($_SESSION['username'])) {
+    header("Location: index.php");
+  }
 ?>
 
 <!doctype html>
@@ -20,7 +25,7 @@
   <head>
   	<!-- Bootstrap CSS -->
   	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  	<title>Welcome, admin!</title>
+  	<title>Welcome, moderator!</title>
   	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!--原始比例缩放，网页初始大小占屏幕面积的100%-->
   	<link href="css/main.css" type="text/css" rel="stylesheet">
@@ -28,16 +33,15 @@
   </head>
 
   <body style="background-color:#eee">
-    <div class="mainbox">
+    <div class="mainbox mainbox_2">
       <aside>
-        <h1>Welcome, admin!</h1>
+        <h1>Welcome, moderator!</h1>
         <div class="person">
-          <img src="images/profile.png">
+          <img style="border-color:#999" src="images/profile2.png">
           <h2><?php echo $_SESSION['username']; ?></h2>
-          <span>admin</span>
+          <span>moderator</span>
         </div>
         <ul>
-          <li><a href="create.php">+ Add User</a></li>
           <li><a href="create.php">+ Add Movie</a></li>
           <li><a href="gallery.php">Go to Gallery</a></li>
         </ul>
@@ -49,14 +53,14 @@
 
       <main class="admin_main">
         <figure class="desk">
-          <img src="images/desk.jpeg">
+          <img src="images/desk2.jpeg">
           <figcaption class="date">
             22:57
             <span class="cal">Sun 11th Nov, 2018</span>
           </figcaption>
         </figure>
 
-<!--PHP for upload files-----go down:162-->
+<!--PHP for upload files-->
         <?php
           if(isset($_FILES['upload'])) {
 
@@ -78,7 +82,7 @@
           }
         ?>
 
-<!--PHP for saving a edited movie-----go down:223-->
+<!--PHP for save a edited ☄☄ movie-->
         <?php
           include("php/config.php");
           #open the database
@@ -97,17 +101,16 @@
             $year = $_GET['movie_year'];
             #$_GET['movie_year'] != "" ? $year = $_GET['movie_year'] : $year=" ";
 
-            #---get an arry of directors' id with a specific movie
-            $query = "SELECT author_id FROM movie JOIN director_movie ON movie.id = director_movie.movie_id WHERE movie.id=$id";
+            $query = "SELECT author_id FROM movie JOIN director_movie ON movie.id = director_movie.movie_id 
+            WHERE movie.id=$id";
             $result = $database->query($query);
+
+            #---get an arry with current director's id
             $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-            #since we have more than one directors, need to differ them by different option names, like director0, director1
             $counter=0;
-            $count_d="director".$counter; 
+            $count_d="director".$counter;
             while(isset($_GET[$count_d])) {
-
-              #get the new director id to change the original one
               $director = $_GET[$count_d];
               $old_director = $result[$counter]['author_id'];
 
@@ -115,12 +118,9 @@
               $stmt = $database->prepare($query);
               $stmt->execute();
 
-              #once finish a director, continue to next one until the last one
               $counter++;
               $count_d="director".$counter;
             }
-
-            #update the rest information
             $query = "UPDATE movie SET movie_name='$moviename', year='$year', type='$type' WHERE id=$id";
             $stmt = $database->prepare($query);
             $stmt->execute();                   
@@ -129,30 +129,8 @@
           }
         ?>
 
-<!--PHP for save edited ♀♂ user-----go down:180-->
-        <?php
-          if(isset($_GET['saveuser'])) {
-            
-            $query = "UPDATE user SET type='". $_GET['role']. "' WHERE id=". $_GET['saveuser'];
-            $stmt = $database->prepare($query);
-            $stmt->execute();
-
-            echo $_SESSION['tip3'];
-          }
-        ?>
-
-<!--PHP for delete ♙♟ user-----go down:208-->
-        <?php
-
-          if(isset($_GET['deleteuser'])) {
-            $query = "DELETE FROM user WHERE id=".$_GET['deleteuser'];
-            $stmt = $database->prepare($query);
-            $stmt->execute();
-            
-            echo $_SESSION['tip1'];
-          }
-
-#---PHP for delete ✪✪ movie-----go down:304#         
+<!--PHP for delete ✪✪ movie-->
+        <?php       
           if(isset($_GET['deletemovie'])) {
             $query = "DELETE FROM movie WHERE id=".$_GET['deletemovie'];
             $stmt = $database->prepare($query);
@@ -180,7 +158,7 @@
 
         <div class="upload">
           <h2>Upload Photo</h2>
-          <form action="admin.php" method="post" enctype="multipart/form-data">
+          <form action="moderator.php" method="post" enctype="multipart/form-data">
             <div class="form-row align-items-center">
               <label class="pick">Choose a picture:</label>
               <div class="col-auto">
@@ -193,53 +171,6 @@
           </form> 
         </div>
 
-        <div class="um">
-          <h2>User Management</h2>    
-
-<!--php for editing user role-----go back:113-->
-          <?php
-            #take all the user info in database
-            $query = "SELECT id, username, type FROM user";          
-            $stmt = $database->prepare($query);
-            $stmt->bind_result($id, $username, $type);
-            $stmt->execute();
-
-            echo '<div class="persons">';
-
-            while($stmt->fetch()) {
-
-              #---once press the edit button
-              if(isset($_GET['edituser'])) {
-                if($_GET['edituser'] == $id) {  
-                  echo "<div class='personcard'>                       
-                          <h3 class='card-title'>$username</h3>
-                          <select form='userform' name='role' class='custom-select mr-sm-2 role' id='inlineFormCustomSelect'>
-                                <option value='user'>user</option>
-                                <option value='moderator'>moderator</option>
-                                <option value='admin'>admin</option>
-                          </select>
-                          <form id='userform' method='get'>
-                            <button type='submit' name='saveuser' id='$id' class='btnedit btn' value='$id'>Save</button>
-                          </form>
-                        </div>";              
-                }
-
-              #print out all the user info with edit and delete buttons-----go back:125
-              } else {
-                echo "<div class='personcard'>                       
-                        <h3 class='card-title'>$username</h3>
-                        <span class='card-text' class='usertype'>$type</span>
-                        <form id='userform' action='' method='get'>
-                          <button type='submit' class='btn btnedit' name='edituser' id='$id' value='$id'>Edit</button>
-                          <button type='submit' class='btn btnedit' name='deleteuser' id='$id' value='$id'>Delete</button>
-                        </form>
-                      </div>";
-              }
-            }
-            echo '</div>';
-          ?>
-
-<!--edit movies-----go back:81-->
         <div class="bm">
           <h2>Movie Management</h2>
           <?php
@@ -260,26 +191,22 @@
                       <th scope="col">Year</th>
                       <th scope="col">Operate</th>';
               echo '</thead>';
-
-              #---♞(there's $stmt1 on line 288)since database will keep running until it meets null
+              #---♞since database will keep running until it meets null
               while($stmt->fetch()) {
                 
                 #once press the edit button
                 if(isset($_GET['editmovie'])) {
                   if($_GET['editmovie'] == $id) {
-
-                    #need a loop to go through all the rows with the same movie
                     if(!isset($wholecounter)) {
                       $wholecounter=0;
                     } else {
                       $wholecounter++;
                     }
     
-                    #---$dcounter is for go through all the directors with the same movie
                     if(!isset($dcounter)) $dcounter=0;
                     echo "<tr>";
                     
-                    #only print out the first td with id and not allow to change the movie id
+                    #not allow to change the movie id
                     if($wholecounter == 0) {
                       echo "<td>$id</td>
                           <td>";
@@ -287,8 +214,7 @@
                       echo "<td></td>
                             <td>";
                     }
-                  
-                    #only print out the first td with movie name
+                    
                     if($wholecounter==0) {
                       echo "<input form='editform' name='movie_name' class='movie_name' value='$movie_name'>";
                     }
@@ -298,7 +224,8 @@
                     @$database1 = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
 
                     #---♘when edit movie, the director drop box will show the movie with current director
-                    $query = "SELECT author_id FROM movie JOIN director_movie ON movie.id = director_movie.movie_id WHERE movie.id=$id";
+                    $query = "SELECT author_id FROM movie JOIN director_movie ON movie.id = director_movie.movie_id 
+                    WHERE movie.id=$id";
                     $result = $database1->query($query);
 
                     #---get an arry with current director's id
@@ -310,28 +237,26 @@
                     $result = $database1->query($query);
                     $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     
-                    echo "<td>
-                          <select form='editform' name='director$wholecounter' class='custom-select mr-sm-2 jsdom' id='inlineFormCustomSelect'>";
-                                    
-                          #---use for loop to print all the directors' name(combined with first and last name) in the drop box
-                          for($count=0; $count<sizeof($result); $count++) {
-                            
-                            #make sure when edit the movie, the director's name of the movie will be showed in the drop box by selected value
-                            if($cd[$dcounter]['author_id'] == $result[$count]['id']) {
-                              echo "<option selected='selected' value='". $result[$count]['id'] . "'>" . 
-                                  $result[$count]['first_name']. " " .$result[$count]['last_name'] . "</option>";
-                                  
-                            #otherwise just print out all the directors name
-                            } else {
-                              echo "<option value='". $result[$count]['id'] . "'>" . 
-                                  $result[$count]['first_name']. " " .$result[$count]['last_name'] . "</option>";
-                            }
-                          }
-                          $dcounter++;
-
-                      echo "</select>";
+                    echo "<td><select form='editform' name='director$wholecounter' class='custom-select mr-sm-2 jsdom' id='inlineFormCustomSelect'>";
+                    
+                    //echo "<option value=$cd>Director</option>"; #---get the current director's id
+                    
+                    #---use for loop to print all the directors' name(combined with first and last name) in the drop box
+                    for($count=0; $count<sizeof($result); $count++) {
+                      
+                      if($cd[$dcounter]['author_id'] == $result[$count]['id']) {
+                        echo "<option selected='selected' value='". $result[$count]['id'] . "'>" . 
+                            $result[$count]['first_name']. " " .$result[$count]['last_name'] . "</option>";
+                            #$dcounter++;
+                      } else {
+                        echo "<option value='". $result[$count]['id'] . "'>" . 
+                            $result[$count]['first_name']. " " .$result[$count]['last_name'] . "</option>";
+                      }
+                      
+                    }
+                    $dcounter++;
+                    echo "</select>";
                     echo"</td>";
-
                     if($wholecounter==0) {
                       echo "<td><select form='editform' name='type' class='custom-select mr-sm-2' id='inlineFormCustomSelect'>
                             <option value='$type'>Type</option>
@@ -349,8 +274,6 @@
                           <button type='submit' name='savemovie' id='$id' class='btnedit btn jssave' value='$id'>Save</button>
                         </form>
                         </td>";
-
-                    #leave the rest row empty
                     } else {
                       echo "<td></td>
                             <td></td>

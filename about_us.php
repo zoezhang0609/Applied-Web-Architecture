@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<!-- Bootstrap CSS -->
+<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<title>Welcome to bookpal</title>
 	<meta charset="utf-8">
@@ -14,7 +14,10 @@
 	<body>
 		<div class="container">
 			<header class="space">
-				<?php include("php/header.php"); ?>
+			<?php 
+				$highlight = "about_us.php";
+				include("php/header.php");
+			?>
 			</header>
 
 <!--slices-->
@@ -82,12 +85,12 @@
 				<li>
 					<img src="images/f2.png">
 					<h4>127,420 movies</h4>
-					<p>Tons of movies are in stock. You will definitely get what you want.</p>
+					<p>There are lots of movies in stock. You will find what you want.</p>
 				</li>
 				<li>
 					<img src="images/f3.png">
-					<h4>Sustainable Development</h4>
-					<p>Reserve movies online, enjoy watching when and where you want.</p>
+					<h4>Development</h4>
+					<p>Join us, if you have the same interests with us, please.</p>
 				</li>
 
 			</ul>
@@ -95,8 +98,8 @@
 <!--footer-->
 			<?php include("php/footer.php"); ?>
 		</div>
-		<!-- Optional JavaScript -->
- 	  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
  	  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
  	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
  	  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

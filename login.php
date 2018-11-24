@@ -10,6 +10,10 @@
     exit();
   }
 
+  if(!isset($_SESSION)) {
+    session_start();
+  }
+
   if(isset($_POST['username'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -21,20 +25,40 @@
     $salt = '$1$rasmusle$rISCgZzpwk3UhDidwXvin0';
     $password = crypt($password, $salt);
 
-    $sql = "SELECT password FROM user WHERE username='$username' AND password='$password'";
+    $sql = "SELECT * FROM user WHERE username='$username' AND password='$password'";
     $result = $database->query($sql);
 
     #go to admin page once password and username matched
     if($result->num_rows > 0) {
-      header("Location: admin.php");
-    } else {
-      $tips = "<small><b>Sorry, not match!</b></small>";
+      $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
+      $_SESSION['type'] = $result[0]['type'];
+      $_SESSION['username'] = $username;
+      $_SESSION['id'] = $result[0]['id'];   #get the id for reseve book
+
+      if($_SESSION['type'] == 'admin') {
+        header("Location: admin.php");
+        exit();
+      } else if($_SESSION['type'] == 'moderator') {
+        header("Location: moderator.php");
+        exit();
+      } else {
+        header("Location: index.php");
+      }
+      
+    } 
+    
+    else {
+      $tips = "<small class='xstips'>Sorry, not match!</small>";
+    }
+
+    if($username == "" || $password == "") {
+      $tips = "<small class='xstips'>Please provide your username and password.</small>";
     }
   }
 ?>
 
 <!doctype html>
-<html>
+<html class="wallpaper">
   <head>
   	<!-- Bootstrap CSS -->
   	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -45,23 +69,22 @@
   	<link href="https://fonts.googleapis.com/css?family=PT+Serif|Roboto:500,700,900" rel="stylesheet">
   </head>
 
-  <body>
+  <body class="transparent">
+    <?php if(isset($tips)) {echo $tips;} ?>
     <div class="container">
-      <?php if(isset($tips)) {echo $tips;} ?>
-      <div style="margin-top:30px; padding-bottom:20px;">
+      <div style="margin-top:30px">
         <a href="index.php" id="logo"><img src="images/logotype.png"></a>
       </div>
+      
       <header class="space">
-        <form action="" method="post" style="margin-top:50px;">
+        <form action="" method="post" style="margin-bottom:20px; margin-top:10px;">
           <div class="form-group">
             <label class="label" for="username">Username</label>
-            <input name="username" type="text" style="border-top:0; border-left:0; border-right:0; border-bottom:1px solid #aaa; width:300px;"
-            class="form" id="username">
+            <input class="inputbox" name="username" type="text" class="form" id="username">
           </div>
           <div class="form-group">
             <label class="label" for="password">Password</label>
-            <input name="password" type="password" style="border-top:0; border-left:0; border-right:0; border-bottom:1px solid #aaa; width:300px;"
-            class="form" id="password">
+            <input class="inputbox" name="password" type="password" class="form" id="password">
           </div>
           <button type="submit" style="margin-top:20px; width:300px;" class="btn btn-primary">Login</button>
         </form>

@@ -1,4 +1,7 @@
 <?php include("config.php"); ?>
+<div class="log_out">
+  <span><a href="php/log_out.php">Log out</a></span>
+</div>
 <div class="box">
   <div class="white">
     <a href="index.php" id="logo"><img src="images/logotype.png"></a>
@@ -6,11 +9,11 @@
   <nav id="showtime">
     <ul>
       <li><a href="index.php">Home</a></li>
-      <li><a class="<?php echo($current_page == 'about_us.php') ?'active':NULL ?>" href="about_us.php">About Us</a></li>
-      <li><a class="<?php echo($current_page == 'movie_box.php') ?'active':NULL ?>" href="movie_box.php">Movies Box</a></li>
-      <li><a class="<?php echo($current_page == 'my_movies.php') ?'active':NULL ?>" href="my_movies.php">My Movies</a></li>
-      <li><a class="<?php echo($current_page == 'contact.php') ?'active':NULL ?>" href="contact.php">Contact</a></li>
-      <li><a class="<?php echo($current_page == 'gallery.php') ?'active':NULL ?>" href="gallery.php">Gallery</a></li>
+      <li><a href="about_us.php"<?php if($highlight=="about_us.php") echo "class='active'"; ?>>About Us</a></li>
+      <li><a href="movie_box.php"<?php if($highlight=="movie_box.php") echo "class='active'"; ?>>Movies Box</a></li>
+      <li><a href="my_movies.php"<?php if($highlight=="my_movies.php") echo "class='active'"; ?>>My Movies</a></li>
+      <li><a href="contact.php"<?php if($highlight=="contact.php") echo "class='active'"; ?>>Contact</a></li>
+      <li><a href="gallery.php"<?php if($highlight=="gallery.php") echo "class='active'"; ?>>Gallery</a></li>
     </ul>
   </nav>
 </div>

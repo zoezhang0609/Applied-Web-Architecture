@@ -13,31 +13,38 @@
   <body>
     <div class="container">
 			<header class="space">
-				<?php include("php/header.php"); ?>
+      <?php 
+					$highlight = "gallery.php";
+					include("php/header.php");
+				?>
 			</header>
 
-      <?php
-        $dir = "upload/"; //要获取的目录
-
-        if (is_dir($dir)){    //先判断指定的路径是不是一个文件夹
-          if ($dh = opendir($dir)){
-            echo "<div class='category'>
-                    <h3>Gallery</h3>
-                    <div class='card-columns'>";
-            while (($file = readdir($dh))!= false){
-              if(!($file == '.' || $file == '..')) {
-                echo "<div class='card'>
-                        <img class='card-img-top' src='".$dir.$file."'/>
-                        </div>";
+      <div class="gallery">
+        <h3>Gallery</h3>
+        <div class="posterbox">
+           <!--<div class="poster">
+            <img src="upload/index1.jpg">
+          </div>
+          <div class="poster">
+            <img src="upload/index3.jpg">
+          </div>
+          <div class="poster">
+            <img src="upload/index5.jpg">
+          </div>
+          <div class="poster">
+            <img src="upload/index6.jpg">
+          </div>-->
+          <?php
+            foreach(glob("upload/*") as $filename) {
+              echo "<div class='poster'>
+                      
+                      <img src='$filename'/>
+                    </div>";
             }
-          }
-            echo "  </div>
-                  </div>";
-            closedir($dh);
-          }
-        }
-      ?>
-      
+          ?>
+        </div>
+      </div>
+
     <!--footer-->
     			<?php include("php/footer.php"); ?>
       </div>

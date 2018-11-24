@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 20, 2018 at 11:34 PM
+-- Generation Time: Nov 24, 2018 at 02:05 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -42,9 +42,20 @@ CREATE TABLE `director` (
 INSERT INTO `director` (`id`, `first_name`, `last_name`, `birthday`) VALUES
 (1, 'Tom', 'Ford', '2018-07-09'),
 (2, 'Martin', 'Karelius', '1981-07-15'),
-(3, 'Luc', 'Besson', '1956-11-02'),
 (4, 'Dave', 'Johnson', '1980-09-21'),
-(5, 'Zoe', 'Zhang', '2000-12-12');
+(5, 'Zoe', 'Zhang', '2000-12-12'),
+(14, 'Chunying', 'Zhang', '0000-00-00'),
+(15, 'Jay', 'Chou', '0000-00-00'),
+(17, 'zhen', 'chen', '0000-00-00'),
+(18, 'Robort', 'Smith', '0000-00-00'),
+(19, 'Gaga', 'Danish', '0000-00-00'),
+(20, 'Happy', 'Tiger', '0000-00-00'),
+(21, 'zhen', 'Zhang', '0000-00-00'),
+(22, 'Chunying', 'Karelius', '0000-00-00'),
+(23, 'Stephen', 'King', '0000-00-00'),
+(24, 'Dave', 'Karelius', '0000-00-00'),
+(25, 'Zoe', 'Karelius', '0000-00-00'),
+(26, 'Daaa', 'Saaa', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -53,7 +64,6 @@ INSERT INTO `director` (`id`, `first_name`, `last_name`, `birthday`) VALUES
 --
 
 CREATE TABLE `director_movie` (
-  `id` int(11) NOT NULL,
   `author_id` int(11) NOT NULL,
   `movie_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -62,12 +72,17 @@ CREATE TABLE `director_movie` (
 -- Dumping data for table `director_movie`
 --
 
-INSERT INTO `director_movie` (`id`, `author_id`, `movie_id`) VALUES
-(1, 2, 2),
-(2, 2, 3),
-(3, 2, 4),
-(4, 2, 5),
-(5, 5, 5);
+INSERT INTO `director_movie` (`author_id`, `movie_id`) VALUES
+(2, 42),
+(2, 47),
+(20, 58),
+(21, 58),
+(2, 60),
+(17, 61),
+(2, 61),
+(5, 60),
+(25, 61),
+(26, 61);
 
 -- --------------------------------------------------------
 
@@ -77,10 +92,8 @@ INSERT INTO `director_movie` (`id`, `author_id`, `movie_id`) VALUES
 
 CREATE TABLE `movie` (
   `movie_name` varchar(30) NOT NULL,
-  `director` varchar(30) NOT NULL,
   `type` varchar(30) NOT NULL,
-  `year` int(11) NOT NULL,
-  `barcode` varchar(10) NOT NULL,
+  `year` varchar(4) DEFAULT NULL,
   `available` int(1) NOT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -89,12 +102,31 @@ CREATE TABLE `movie` (
 -- Dumping data for table `movie`
 --
 
-INSERT INTO `movie` (`movie_name`, `director`, `type`, `year`, `barcode`, `available`, `id`) VALUES
-('Leon', 'Luc Besson', 'crime', 1994, 'c94lb01', 0, 1),
-('Inception', 'Martin Karelius', 'crime', 2010, 'c10cn00', 0, 2),
-('Mission Impossible6', 'Martin Karelius', 'crime', 2018, 'c18bd01', 0, 3),
-('The Notebook', 'Martin Karelius', 'romance', 1999, 'r99mz01', 0, 4),
-('The Notebook', 'Zoe Zhang', 'romance', 1999, 'r99mz02', 0, 5);
+INSERT INTO `movie` (`movie_name`, `type`, `year`, `available`, `id`) VALUES
+('A star is born', 'Comedy', '1999', 0, 42),
+('The spirited away', 'Comedy', '', 0, 47),
+('Final Maste', 'Horror', '2009', 1, 58),
+('Lion_2', 'Horror', '2018', 1, 60),
+('Get Out', 'Comedy', '', 0, 61);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reservemovie`
+--
+
+CREATE TABLE `reservemovie` (
+  `user_id` int(11) NOT NULL,
+  `movie_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reservemovie`
+--
+
+INSERT INTO `reservemovie` (`user_id`, `movie_id`) VALUES
+(29, 58),
+(29, 60);
 
 -- --------------------------------------------------------
 
@@ -105,8 +137,20 @@ INSERT INTO `movie` (`movie_name`, `director`, `type`, `year`, `barcode`, `avail
 CREATE TABLE `user` (
   `id` int(1) NOT NULL,
   `username` varchar(64) NOT NULL,
-  `password` varchar(128) NOT NULL
+  `password` varchar(128) NOT NULL,
+  `type` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `password`, `type`) VALUES
+(22, 'zoe', '$1$rasmusle$8cJyCKdQMHsXdAfs1jAtt0', 'admin'),
+(29, 'martin', '$1$rasmusle$8cJyCKdQMHsXdAfs1jAtt0', 'moderator'),
+(31, 'elephant', '$1$rasmusle$8cJyCKdQMHsXdAfs1jAtt0', 'user'),
+(32, 'tiger', '$1$rasmusle$8cJyCKdQMHsXdAfs1jAtt0', 'user'),
+(33, 'zoee', '$1$rasmusle$8cJyCKdQMHsXdAfs1jAtt0', 'moderator');
 
 --
 -- Indexes for dumped tables
@@ -116,12 +160,6 @@ CREATE TABLE `user` (
 -- Indexes for table `director`
 --
 ALTER TABLE `director`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `director_movie`
---
-ALTER TABLE `director_movie`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -142,16 +180,22 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `director`
+--
+ALTER TABLE `director`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
 -- AUTO_INCREMENT for table `movie`
 --
 ALTER TABLE `movie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

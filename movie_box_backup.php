@@ -126,50 +126,12 @@
 								<th scope="col">Year</th>
 								<th scope="col">Status</th>';
 				echo '</thead>';
-
-				$movielist=[];
 				while($stmt->fetch()) {
-					#array: put all the movie info into an array
-					array_push($movielist, ["id"=>$id, "movie_name"=>$movie_name, "director"=>$first_name." ".$last_name,
-					"type"=>$type, "year"=>$year, "available"=>$available]);
-				}
-
-				#--1.need to make sure the if statement is false, then jump to 2 to get the movie id
-				$mid = -1;	
-				for($count=0; $count<sizeof($movielist); $count++) {
-
-					#--3.the $count will keep adding until getting the $mid equals to a movie id in the array
-					if($mid == $movielist[$count]['id']) {
-
-						#--4.get the previous line's director's name with the same movie's 
-						$director = $movielist[$count-1]['director'];
-
-						#--5.combine the previous director's name with current director's name, show all the names in one td
-						$movielist[$count]['director'] .= "<br> ". $director;
-
-						#--6.remove the previous line
-						array_splice($movielist, ($count-1), 1);
-						$count--;
-					}
-
-					#--2.need to get the first line's movie id
-					$mid = $movielist[$count]['id'];
-				}
-
-				#loop for print out all the info in database
-				for($count=0; $count<sizeof($movielist); $count++) {
-					$id = $movielist[$count]['id'];
-					$movie_name = $movielist[$count]['movie_name'];
-					$directors = $movielist[$count]['director'];
-					$type = $movielist[$count]['type'];
-					$year = $movielist[$count]['year'];
-					$available = $movielist[$count]['available'];
-					
 					if($available==0) {
 						echo "<tr>";
 						echo "<td>$id</td>
 								<td>$movie_name</td>
-								<td>$directors</td>
+								<td>$first_name&nbsp&nbsp$last_name</td>
 								<td>$type</td>
 								<td>$year</td>
 								<td>
@@ -182,13 +144,13 @@
 						echo "<tr>";
 						echo "<td>$id</td>
 								<td>$movie_name</td>
-								<td>$directors</td>
+								<td>$first_name&nbsp&nbsp$last_name</td>
 								<td>$type</td>
 								<td>$year</td>
 								<td><button type='button' class='btn_borrowed'>Reserve</button></td>";
 						echo "</tr>";
 					}
-				}								
+				}
 				echo '</table>';
 			?>
 

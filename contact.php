@@ -14,7 +14,11 @@
 	<body>
 		<div class="container">
 			<header class="space">
-				<?php include("php/header.php"); ?>
+				
+			<?php 
+					$highlight = "contact.php";
+					include("php/header.php");
+				?>
 			</header>
 
 			<main class="adjustment contactpig">

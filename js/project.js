@@ -1,23 +1,34 @@
-var content = document.querySelector("small");//写入duedate的地方
-var buttonsMovieBox = document.getElementsByClassName("btnreserve");//movie_box页面，所有带btnreserve这个class的按钮，这是个array
-var buttonsMyMovie = document.getElementsByClassName("btnremove");//my_movie页面，所有带btnreserve这个class的按钮，这是个array
-var buttons_list1 = buttonsMovieBox.length;//movie_box页面,按钮array的数量
-var buttons_list2 = buttonsMyMovie.length;//my_movie页面,按钮array的数量
+var drop= document.getElementsByClassName("jsdom");
 
-for(var i=0; i<buttons_list1; i++) {//遍历每一个按钮
-  buttonsMovieBox[i].addEventListener("click", showTips);//从array的第1个按钮开始，每个按钮都绑定监听事件
-
-  function showTips(event) {
-    content.innerHTML = "Reserved successfully! " + "<b>" + "Duedate: November 20th, 2018." + "</b>";
-    content.setAttribute("class", "notice");
-  }
+for(var count=0; count<drop.length; count++) {
+  drop[count].addEventListener("change", check_id);
 }
+//check_id();
 
-for(var i=0; i<buttons_list2; i++) {//遍历每一个按钮
-  buttonsMyMovie[i].addEventListener("click", showInfo);//从array的第1个按钮开始，每个按钮都绑定监听事件
+function check_id(event) {
 
-  function showInfo(event) {
-    content.innerHTML = "<b>" + "Remove successfully!" + "</b>";
-    content.setAttribute("class", "notice");
+  var array=[];
+
+  for(var count=0; count<drop.length; count++) {
+    
+    var mydb=drop[count];
+    array[count] = mydb.options[mydb.selectedIndex].value;
+
+    console.log(array[count]);
   }
+
+  array = array.sort();
+  
+  var isduplicate = false;
+  for(var count=0; count<array.length-1; count++) {
+    if(array[count]==array[count+1]) {
+      isduplicate = true;
+    }
+  }
+  if(isduplicate) {
+    document.getElementsByClassName("jssave")[0].style.display="none";
+  } else {
+    document.getElementsByClassName("jssave")[0].style.display="inline-block";
+  }
+  
 }
